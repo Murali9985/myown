@@ -1,0 +1,251 @@
+<!-- <main class="jumbotron container col-5">
+  <div>
+  <input type="radio" value="nri" name="country" [(ngModel)]="sele" >NRI
+  <input type="radio" value="india" name="country" [(ngModel)]="sele" >Indian
+  <button type="submit" (click)="fnn(sele)">Confirm</button>
+</div>
+  <form *ngIf="yes">
+    <div class="form-group">
+      <label for="exampleFormControlFile1"><b style="color: red">Upload NRI certificate</b></label>
+      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+  </form>
+
+
+
+
+<hr>
+
+<h1 style="font-size: 20px;color:brown;text-align:center">Enter Details</h1>
+<app-employee (door)="fn($event)" (window)="fnnn($event)" ></app-employee>
+
+
+
+<app-details [one]="obj2" [two]="status"></app-details>
+<hr>
+
+
+
+<main><div class="row">
+  <section class="col-4">
+
+  <div class="form-group">
+    <label>Loan Amount:&nbsp;</label><input name="principal" class="form-control" [(ngModel)]="loan" >
+    {{loan}}<br>
+    <label>Tenure(years):&nbsp;</label><input  name="yea" class="form-control" [(ngModel)]="time" >
+    {{time}}<br>
+    <label>Rate of Interest:&nbsp;</label><input  name="rateof" class="form-control" [(ngModel)]="rate" >
+    {{rate}}<br>
+   
+    <button type="submit" (click)="cal(loan,time,rate)" >Calculate</button>
+  </div>
+
+</section>
+<section class="col-4 ml-3">
+<label>Equated Monthly Installment</label>
+<h3>{{cc}}</h3>
+<h3>{{emi}}</h3>
+</section>
+</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main> -->
+<router-outlet></router-outlet>
+
+
+
+<main class="jumbotron col-4 mx-auto form-group">
+<form [formGroup]="empfrm" (submit)="rf()">
+Enter name:
+<input formControlName="uname" class="form-control" pattern="[A-Za-z]*">
+<div *ngIf="empfrm.get('uname').invalid&&empfrm.get('uname').touched">
+  <p *ngIf="empfrm.get('uname').errors.required" style="color:red">Please Enter Name</p>
+  <p *ngIf="empfrm.get('uname').errors.pattern" style="color:red">Please Enter valid Name</p>
+  <p *ngIf="empfrm.get('uname').errors.vald" style="color:red">Name should be murali</p>
+  <!-- <p *ngIf="empfrm.get('uname').errors.minlength" style="color:red ">Please Enter minLength of 3 charecters</p> -->
+</div>
+
+Enter ID:
+<input formControlName="emid" class="form-control" pattern="[0-9]*" >
+<div *ngIf="empfrm.get('emid').invalid&& empfrm.get('emid').touched">
+    <p *ngIf="empfrm.get('emid').errors.required" style="color:red">Please Enter Emp Id</p>
+    <p *ngIf="empfrm.get('emid').errors.pattern" style="color:red">Please Enter Numbered Emp Id</p>
+    <p *ngIf="empfrm.get('emid').errors.minlength" style="color:red ">Length should be of 5 numbers</p>
+    <p *ngIf="empfrm.get('emid').errors.maxlength" style="color:red ">Length should be of 5 numbers</p>
+  </div>
+
+Enter Age:
+<input formControlName="age" class="form-control"  >
+<div *ngIf="empfrm.get('age').invalid&&empfrm.get('age').touched">
+    <p *ngIf="empfrm.get('age').errors.required" style="color:red">Please Enter Your Age</p>
+    <p *ngIf="empfrm.get('age').errors.min" style="color:red ">Age should between 21 and 30</p>
+    <p *ngIf="empfrm.get('age').errors.max" style="color:red ">Age should between 21 and 30</p>
+  </div>
+
+Enter Email:
+<input formControlName="email" class="form-control" >
+<div *ngIf="empfrm.get('email').invalid&&empfrm.get('email').touched">
+    <p *ngIf="empfrm.get('email').errors.required" style="color:red">Please Enter Email</p>
+    <p *ngIf="empfrm.get('email').errors.email" style="color:red ">Enter valid Email id</p>
+    <p *ngIf="empfrm.get('email').errors.emvalid" style="color:red ">Enter ojas-it extension</p>
+    
+  </div>
+  <br>
+  Enter PassWord:
+<input formControlName="pass" class="form-control" >
+<div *ngIf="empfrm.get('pass').invalid&&empfrm.get('pass').touched">
+    <p *ngIf="empfrm.get('pass').required" style="color:red">Please Enter PassWord</p>
+  </div>
+  <!-- <input formControlName="cpass" class="form-control" >
+<div *ngIf="empfrm.get('cpass').invalid&&empfrm.get('cpass').touched">
+    <p *ngIf="empfrm.get('cpass').required" style="color:red">re Enter PassWord</p>
+    <p *ngIf="empfrm.get('cpass').npassmat" style="color:red">Please Enter correct  PassWord</p>
+  </div> -->
+<h4>Enter Educational Details:</h4><br>
+
+<div formGroupName="edu" [ngClass]="{'err':empfrm.get('edu').invalid&&empfrm.get('edu').touched,'ok':empfrm.get('edu').valid}">
+
+  Enter College Name
+  <input formControlName="colg" class="form-control" >
+  <div *ngIf="empfrm.get('edu').get('colg').invalid && empfrm.get('edu').get('colg').touched">
+      <p *ngIf="empfrm.get('edu').get('colg').errors.required" style="color:red">Please Enter College name</p>
+      <p *ngIf="empfrm.get('edu').get('colg').errors.pattern" style="color:red">Please Enter valid College name</p>
+    </div>
+  
+
+  Enter Percentage
+  <input formControlName="per" class="form-control" >
+  <div *ngIf="empfrm.get('edu').get('per').invalid && empfrm.get('edu').get('per').touched">
+      <p *ngIf="empfrm.get('edu').get('per').errors.required" style="color:red">Please Enter Percentage</p>
+      <p *ngIf="empfrm.get('edu').get('per').errors.pattern" style="color:red">Please Enter valid Percentage</p>
+      <p *ngIf="empfrm.get('edu').get('per').errors.min" style="color:red">Please Enter valid Percentage</p>
+      <p *ngIf="empfrm.get('edu').get('per').errors.max" style="color:red">Please Enter valid Percentage</p>
+    </div>
+  Enter passOut
+  <input formControlName="passout" class="form-control" >
+  <div *ngIf="empfrm.get('edu').get('passout').invalid && empfrm.get('edu').get('passout').touched">
+      <p *ngIf="empfrm.get('edu').get('passout').errors.required" style="color:red">Please Enter passOut year</p>
+      <p *ngIf="empfrm.get('edu').get('passout').errors.pattern" style="color:red">Please Enter valid passOut year</p>
+      <p *ngIf="empfrm.get('edu').get('passout').errors.min" style="color:red">Please Enter more than 1995 year</p>
+      <p *ngIf="empfrm.get('edu').get('passout').errors.max" style="color:red">Please Enter below 2020 passOut year</p>
+    </div>
+</div>
+<pre>{{empfrm.get('edu').value|json}}</pre>
+<br>
+<h4>Address:</h4>
+<br>
+<div formGroupName="address" [ngClass]="{'err':empfrm.get('address').invalid&&empfrm.get('address').touched,'ok':empfrm.get('address').valid}">
+
+    Door number
+    <input formControlName="door" class="form-control" >
+    <div *ngIf="empfrm.get('address').get('door').invalid && empfrm.get('address').get('door').touched">
+        <p *ngIf="empfrm.get('address').get('door').errors.required" style="color:red">Please Enter Door Number</p>
+        <p *ngIf="empfrm.get('address').get('door').errors.pattern" style="color:red">Please Enter Numbered Door number</p>
+  </div>
+    Street
+    <input formControlName="street" class="form-control" >
+    <div *ngIf="empfrm.get('address').get('street').invalid && empfrm.get('address').get('street').touched">
+        <p *ngIf="empfrm.get('address').get('street').errors.required" style="color:red">Please Enter Street Name</p>
+        <p *ngIf="empfrm.get('address').get('street').errors.pattern" style="color:red">Please Enter valid Name</p>
+  </div>
+    City
+    <input formControlName="city" class="form-control" >
+    <div *ngIf="empfrm.get('address').get('city').invalid && empfrm.get('address').get('city').touched">
+        <p *ngIf="empfrm.get('address').get('city').errors.required" style="color:red">Please Enter City Name</p>
+        <p *ngIf="empfrm.get('address').get('city').errors.pattern" style="color:red">Please Enter valid City Name</p>
+  </div>
+     State
+    <input formControlName="state" class="form-control">
+    <div *ngIf="empfrm.get('address').get('state').invalid && empfrm.get('address').get('state').touched">
+        <p *ngIf="empfrm.get('address').get('state').errors.required" style="color:red">Please Enter State Name</p>
+        <p *ngIf="empfrm.get('address').get('state').errors.pattern" style="color:red">Please Enter valid state Name</p>
+  </div>
+   Pincode
+    <input formControlName="pin" class="form-control">
+    <div *ngIf="empfrm.get('address').get('pin').invalid && empfrm.get('address').get('pin').touched">
+        <p *ngIf="empfrm.get('address').get('pin').errors.required" style="color:red">Please Enter Pincode </p>
+        <p *ngIf="empfrm.get('address').get('pin').errors.pattern" style="color:red">Please Enter valid </p>
+  </div>
+    
+  </div>
+  
+
+
+
+  <br>
+
+
+  <button class="btn btn-success" [disabled]="empfrm.invalid">Submit</button>
+
+
+
+
+
+
+
+
+
+
+
+
+<aside formArrayName="details"  *ngFor="let t of empfrm.get('details').controls;let i=index" >
+  <div [ngClass]="{'err':empfrm.get('details').invalid && empfrm.get('details').touched,'ok':empfrm.get('details').valid}">  
+  <section formGroupName="{{i}}" class="form-group">
+      Name:
+      <input formControlName="nnamee" class="form-control">
+      Age:
+      <input formControlName="ageage" class="form-control">
+    </section>
+  
+  </div>
+      
+
+
+
+
+
+
+  <!-- <pre>{{empfrm.get('details').controls|json}}</pre> -->
+
+
+<button (click)="rem(i)">Remove</button>
+</aside>
+<button (click)="svn($event)">Add</button>
+</form>
+
+</main>
+
+<!-- 
+<table class="table table-stripped container col-6" *ngIf="st">
+    <thead>
+      <tr>
+        
+        <th >Name</th>
+        <th >Email</th>
+        <th >Employee ID</th>
+        <th >Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{naaam}}</td>
+        <td>{{eeeml}}</td>
+        <td>{{aag}}</td>
+        <td>{{idd}}</td>
+      </tr>
+    </tbody>
+  </table> -->

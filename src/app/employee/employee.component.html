@@ -1,0 +1,84 @@
+<div class="jumbotron mx-auto">
+    <form #ons="ngForm" (submit)="ffff(ons)">
+      <div class="form-group">
+        <label>Enter name</label>
+        <input [(ngModel)]="view" name="name" #nmfld="ngModel" class="form-control"
+          [ngClass]="{'is-invalid':nmfld.invalid&&nmfld.touched,'is-valid':nmfld.valid}" required>
+  
+      </div>
+      <section *ngIf="nmfld.invalid&&nmfld.touched">
+        <p *ngIf="nmfld.errors.required" style="color: red">Enter Name</p>
+      </section>
+  
+  
+  
+  
+      <div class="form-group">
+        <label>Enter Email</label>
+        <input type="text" [(ngModel)]="vil" name="email" #emfld="ngModel"
+          [ngClass]="{'is-invalid':emfld.touched&&emfld.invalid,'is-valid':emfld.valid}" required email
+          class="form-control">
+  
+      </div>
+  
+      <section *ngIf="emfld.invalid&&emfld.touched">
+        <p *ngIf="emfld.errors.required" style="color: red">Enter Email</p>
+        <p *ngIf="emfld.errors.email" style="color: red">Please Enter Valid Email Format</p>
+  
+      </section>
+  
+      <div class="form-group">
+        <label>Enter Mobile Number</label>
+        <input [(ngModel)]="view1" name="Mobile" #mfld="ngModel" class="form-control"
+          [ngClass]="{'is-invalid':mfld.invalid&&mfld.touched,'is-valid':mfld.valid}" pattern="[0-9]*" required
+          minlength="10">
+  
+      </div>
+  
+      <section *ngIf="mfld.invalid &&mfld.touched">
+        <p *ngIf="mfld.errors.required" style="color: red">please enter number</p>
+        <p *ngIf="mfld.errors.minlength" style="color: red">Enter valid number</p>
+  
+  
+      </section>
+  
+  
+      <!-- <div class="form-group">
+        <label>Enter Password</label>
+        <input type="password" [(ngModel)]="vi" name="Password" #psfld="ngModel"
+          [ngClass]="{'is-invalid':psfld.touched&&psfld.invalid,'is-valid':psfld.valid}" required pattern="{{vi1}}"
+          minlength="8" class="form-control">
+  
+      </div>
+  
+      <section *ngIf="psfld.invalid&&psfld.touched">
+        <p *ngIf="psfld.errors.required" style="color: red">Enter Password</p>
+        <p *ngIf="psfld.errors.minlength" style="color: red">Password Length atleast 8</p>
+        <p *ngIf="psfld.errors.pattern" style="color: red">Please Enter Valid Format</p>
+  
+      </section>
+  
+  
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" [(ngModel)]="vi1" name="Password" #cpsfld="ngModel"
+          [ngClass]="{'is-invalid':vi!=vi1,'is-valid':psfld.valid}" required pattern="{{vi}}" class="form-control">
+  
+      </div>
+  
+      <section *ngIf="cpsfld.invalid&&cpsfld.touched">
+        <p *ngIf="vi!=vi1" style="color: red">Enter Correct Password</p>
+  
+  
+      </section> -->
+  
+  
+      <section class="form-group">
+        <button class="btn btn-primary" [disabled]="ons.invalid">Register</button>
+  
+      </section>
+  
+  
+    </form>
+  </div>
+  
